@@ -15,6 +15,11 @@ class MockEmployeeService: EmployeeServiceType {
             return
         }
         
+        if urlString == EmpEndponts.malformedUrl {
+            completion(nil, "malformedUrl")
+            return
+        }
+        
         do {
             let data = try Data(contentsOf: url)
             let model = try JSONDecoder().decode(T.self, from: data)

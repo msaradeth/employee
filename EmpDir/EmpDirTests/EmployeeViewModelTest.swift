@@ -11,7 +11,7 @@ import XCTest
 final class EmployeeViewModelTest: XCTestCase {
 
 
-    func testFetchData() {
+    func testFetchDataWithValidUrl() {
         // Given
         let mockService = MockEmployeeService()
         let viewModel = EmployeeViewModel(service: mockService)
@@ -29,5 +29,25 @@ final class EmployeeViewModelTest: XCTestCase {
         XCTAssertNil(errorMsg)
         XCTAssertEqual(viewModel.employees.count, 11)
         XCTAssertEqual(viewModel.employees[0].fullname, "Alaina Daly")
+    }
+    
+    func testFetchDataWithMalformedUrl() {
+        // Given
+        let mockService = MockEmployeeService()
+        let viewModel = EmployeeViewModel(service: mockService)
+        viewModel.urlString = EmpEndponts.malformedUrl
+        let expection = XCTestExpectation(description: "Fetch Data")
+        var errorMsg: String?
+        
+        // When
+        viewModel.fetchData { errorMessage in
+            errorMsg = errorMessage
+            expection.fulfill()
+        }
+        wait(for: [expection], timeout: 1)
+        
+        // Then
+        XCTAssertNotNil(errorMsg)
+        XCTAssertEqual(viewModel.employees.count, 0)
     }
 }

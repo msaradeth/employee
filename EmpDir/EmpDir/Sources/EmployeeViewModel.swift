@@ -15,6 +15,7 @@ protocol EmployeeViewModelType {
 final class EmployeeViewModel: EmployeeViewModelType {
     var employees: [Employee]
     var service: EmployeeServiceType
+    var urlString = EmpEndponts.empUrl
     
     init(employee: [Employee] = [], service: EmployeeServiceType) {
         self.employees = employee
@@ -22,9 +23,9 @@ final class EmployeeViewModel: EmployeeViewModelType {
     }
     
     func fetchData(completion: @escaping (String?)->()) {
-        let urlString = EmpEndponts.empUrl
         service.fetchData(urlString: urlString, type: EmployeeContainer.self) { [weak self] (container, errorMsg) in
             if let errorMsg = errorMsg {
+                self?.employees = []
                 completion(errorMsg)
                 return
             }

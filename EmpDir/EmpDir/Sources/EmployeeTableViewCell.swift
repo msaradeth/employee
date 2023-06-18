@@ -18,10 +18,12 @@ class EmployeeTableViewCell: UITableViewCell {
         self.team.text = emp.team
         if let urlString = emp.photoUrlSmall, let url = URL(string: urlString) {
             empImageView.kf.setImage(with: url, placeholder:UIImage(systemName: "person.circle"))
-        } else {
-            // set default image in case the cell is reused.
-            empImageView.image = UIImage(systemName: "person.circle")
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        empImageView.image = UIImage(systemName: "person.circle")
     }
 }
 
