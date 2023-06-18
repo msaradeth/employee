@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "FF3EBE3F-B58B-4E6D-8CE8-76FE79ECB554",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:EmpDir.xcodeproj",
+      "identifier" : "0EDFEA9F2A3EBA0D00B04C61",
+      "name" : "EmpDir"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:EmpDir.xcodeproj",
+        "identifier" : "0EDFEAB52A3EBA0E00B04C61",
+        "name" : "EmpDirTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:EmpDir.xcodeproj",
+        "identifier" : "0EDFEABF2A3EBA0E00B04C61",
+        "name" : "EmpDirUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
